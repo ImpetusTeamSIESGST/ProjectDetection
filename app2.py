@@ -7,9 +7,12 @@ import streamlit as st
 def show_project(recommended_project):
     st.write(f"**Objective:** {recommended_project['Project_domain']}")
     st.write(f"**Output:** {recommended_project['Project_title']}")
+    st.write(f"**Type:** {recommended_project['Project_type']}")
+    c=recommended_project['Project_domain']
+    y= c.replace(" ", "+")
     d=recommended_project['Project_title']
     x = d.replace(" ", "+")
-    st.markdown(f"[Similar Project](https://www.google.com/search?q="+x+"+project+github)")
+    st.markdown(f"[Show Project samples](https://www.google.com/search?q="+x+"+project+using+"+y+"+github)")
 
     # st.write(f"**GitHub:** [{recommended_project['Project_title']}]({recommended_project['GitHub']})")
     st.write("-----")
@@ -34,7 +37,7 @@ user_skills_tfidf = tfidf.transform([user_input])
 similarity_scores = cosine_similarity(user_skills_tfidf, tfidf.transform(projects_df["Required_Skills"]))
 
 # Sort the similarity scores and get the top 5 matching projects
-top_indices = similarity_scores.argsort()[0][::-1][:20]
+top_indices = similarity_scores.argsort()[0][::-1][:25]
 top_projects = projects_df.iloc[top_indices]
 
 # Show the recommended projects
