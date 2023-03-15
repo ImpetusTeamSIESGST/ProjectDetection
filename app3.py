@@ -7,7 +7,7 @@ import base64
 import openai
 
 
-openai.api_key = "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"
+openai.api_key = API key daal
 
 # Set up the model and prompt
 model_engine = "text-davinci-003"
